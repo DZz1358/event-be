@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const port = 3000; 
 const Event = require('./models/event')
 
 const bodyParser = require('body-parser');
 
-const db = 'mongodb+srv://saloed2206:9hGcy35NGTatFrUy@cluster0.bz6s6ax.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const port = process.env.PORT || 3000;
+// const db = 'mongodb+srv://saloed2206:9hGcy35NGTatFrUy@cluster0.bz6s6ax.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const db = process.env.MONGODB_URI;
 
 app.use(bodyParser.json());
 
