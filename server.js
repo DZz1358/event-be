@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const Event = require('./models/event')
+const cors = require('cors');
 
 const bodyParser = require('body-parser');
 
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3000;
 const db = process.env.MONGODB_URI;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 mongoose
     .connect(db)
