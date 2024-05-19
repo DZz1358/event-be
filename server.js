@@ -60,7 +60,7 @@ app.delete('/events/:id', (req, res) => {
   });});
 
 app.post('/add-event', (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, date, author } = req.body;
 
   if (!title || !description) {
       return res.status(400).json({ message: 'Title and description are required' });
@@ -80,7 +80,7 @@ app.post('/add-event', (req, res) => {
 
 app.post('/event/:id/add-attendee', (req, res) => {
   const eventId = req.params.id;
-  const { name, email } = req.body;
+  const { name, email, selection, date} = req.body;
 
   if (!name || !email) {
       return res.status(400).json({ message: 'Name and email are required' });
@@ -92,7 +92,7 @@ app.post('/event/:id/add-attendee', (req, res) => {
               return res.status(404).json({ message: 'Event not found' });
           }
 
-          event.attendees.push({ name, email });
+          event.attendees.push({ name, email, date, selection});
           return event.save();
       })
       .then(updatedEvent => {
