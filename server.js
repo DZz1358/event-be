@@ -66,7 +66,7 @@ app.post('/add-event', (req, res) => {
       return res.status(400).json({ message: 'Title and description are required' });
   }
 
-  const newEvent = new Event({ title, description });
+  const newEvent = new Event({ title, description, date, author });
 
   newEvent.save()
       .then(event => {
